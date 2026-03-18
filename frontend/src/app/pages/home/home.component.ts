@@ -9,7 +9,7 @@ import { PostService, Post } from '../../services/post.service';
   imports: [CommonModule, RouterLink],
   template: `
     <h1>Posts</h1>
-    <p *ngIf="posts.length === 0" style="margin-top:1rem;color:#888">No posts yet.</p>
+    <p *ngIf="!loading && posts.length === 0" style="margin-top:1rem;color:#888">No posts yet.</p>
     <div class="post-list" style="margin-top:1rem">
       <article class="post-card" *ngFor="let post of posts">
         <h2><a [routerLink]="['/posts', post.slug]">{{ post.title }}</a></h2>
@@ -26,10 +26,14 @@ import { PostService, Post } from '../../services/post.service';
 })
 export class HomeComponent implements OnInit {
   posts: Post[] = [];
+  loading = true;
 
   constructor(private postService: PostService) {}
 
   ngOnInit() {
-    this.postService.getAll().subscribe(posts => this.posts = posts);
+    this.postService.getAll().subscribe(posts => {
+      this.posts = posts;
+      this.loading = false;
+    });
   }
 }
