@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: allanpereiraabrahao_local_db
+    environment:
+      POSTGRES_DB: allanpereiraabrahao_local_db
+      POSTGRES_USER: common_user
+      POSTGRES_PASSWORD: common_user
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

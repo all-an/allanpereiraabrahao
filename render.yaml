@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: allanpereiraabrahao
+    env: docker
+    plan: free
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_URL
+        fromDatabase:
+          name: allanpereiraabrahao-db
+          property: connectionString
+      - key: DB_USER
+        fromDatabase:
+          name: allanpereiraabrahao-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: allanpereiraabrahao-db
+          property: password
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        generateValue: true
+
+databases:
+  - name: allanpereiraabrahao-db
+    plan: free
+    databaseName: blog
