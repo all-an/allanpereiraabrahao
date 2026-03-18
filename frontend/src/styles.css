@@ -10,6 +10,27 @@ body {
 a { color: #0066cc; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+/* Site header */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1.5rem 1rem 1rem;
+  text-align: center;
+}
+.site-title {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  text-decoration: none;
+}
+.site-title:hover { text-decoration: none; }
+.site-subtitle {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
 /* Navbar */
 nav {
   background: #fff;

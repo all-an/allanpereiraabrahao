@@ -8,6 +8,10 @@ import { AuthService } from './services/auth.service';
   standalone: true,
   imports: [RouterOutlet, RouterLink, CommonModule],
   template: `
+    <header class="site-header">
+      <a routerLink="/" class="site-title">Allan Pereira Abrahão</a>
+      <p class="site-subtitle">Software Developer | Java | Typescript | Angular | Cloud | AI Driven Developer</p>
+    </header>
     <nav>
       <a class="brand" routerLink="/">Blog</a>
       <div class="nav-links">
