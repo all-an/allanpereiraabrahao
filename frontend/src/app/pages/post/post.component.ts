@@ -6,7 +6,27 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { PostService, Post } from '../../services/post.service';
 import { AuthService } from '../../services/auth.service';
 import { marked } from 'marked';
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+import typescript from 'highlight.js/lib/languages/typescript';
+import java from 'highlight.js/lib/languages/java';
+import xml from 'highlight.js/lib/languages/xml';
+import css from 'highlight.js/lib/languages/css';
+import bash from 'highlight.js/lib/languages/bash';
+import json from 'highlight.js/lib/languages/json';
+import sql from 'highlight.js/lib/languages/sql';
+import plaintext from 'highlight.js/lib/languages/plaintext';
+
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('typescript', typescript);
+hljs.registerLanguage('java', java);
+hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('html', xml);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('bash', bash);
+hljs.registerLanguage('json', json);
+hljs.registerLanguage('sql', sql);
+hljs.registerLanguage('plaintext', plaintext);
 
 const renderer = new marked.Renderer();
 renderer.code = (code: string, lang: string | undefined) => {
