@@ -7,34 +7,27 @@ import { AuthService } from './services/auth.service';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, RouterLink, CommonModule],
-  template: `
-    <header class="site-header">
-      <a routerLink="/" class="site-title">Allan Pereira Abrahão</a>
-      <p class="site-subtitle">Software Developer | Java | Typescript | Angular | Cloud | AI Driven Developer</p>
-    </header>
-    <nav>
-      <a class="brand" routerLink="/">Blog</a>
-      <div class="nav-links">
-        <ng-container *ngIf="auth.user$ | async as user; else loggedOut">
-          <span>{{ user.username }}</span>
-          <button class="btn-link" (click)="logout()">Logout</button>
-          <a *ngIf="user.role === 'ROLE_ADMIN'" routerLink="/admin">Admin</a>
-        </ng-container>
-        <ng-template #loggedOut>
-          <a routerLink="/login">Login</a>
-        </ng-template>
-      </div>
-    </nav>
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
-  `
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
+  dark = false;
+
   constructor(public auth: AuthService) {}
 
   ngOnInit() {
     this.auth.fetchMe();
+    this.dark = localStorage.getItem('darkMode') === 'true';
+    this.applyDark();
+  }
+
+  toggleDark() {
+    this.dark = !this.dark;
+    localStorage.setItem('darkMode', String(this.dark));
+    this.applyDark();
+  }
+
+  private applyDark() {
+    document.body.classList.toggle('dark', this.dark);
   }
 
   logout() {

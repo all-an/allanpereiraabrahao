@@ -3,7 +3,9 @@ package com.allanpereiraabrahao.blog.service;
 import com.allanpereiraabrahao.blog.model.Post;
 import com.allanpereiraabrahao.blog.repository.PostRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
@@ -20,8 +22,8 @@ public class PostService {
     }
 
     public Post findBySlug(String slug) {
-        return postRepository.findBySlug(slug)
-                .orElseThrow(() -> new RuntimeException("Post not found: " + slug));
+        return postRepository.findBySlug(slug.trim())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post not found: " + slug));
     }
 
     public Post save(Post post) {

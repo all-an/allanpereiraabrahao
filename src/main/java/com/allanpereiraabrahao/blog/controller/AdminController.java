@@ -29,6 +29,8 @@ public class AdminController {
             post.setSlug(post.getTitle().toLowerCase()
                     .replaceAll("[^a-z0-9]+", "-")
                     .replaceAll("^-|-$", ""));
+        } else {
+            post.setSlug(post.getSlug().trim());
         }
         return postService.save(post);
     }

@@ -39,3 +39,5 @@ src/main/resources/static/
 .idea/
 *.iml
 .vscode/
+
+draft.md
